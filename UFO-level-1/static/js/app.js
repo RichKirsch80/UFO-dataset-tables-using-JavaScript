@@ -26,52 +26,55 @@ function runEnter() {
     var filteredData = tableData.filter(tableData => tableData.datetime === inputValue);
 
     console.log(filteredData);
+    var dates = [];
+    var cities = [];
+    var states = [];
+    var countries = [];
+    var shapes = [];
+    var duration = [];
+    var comments = [];
 
-    var results = {
-     dates: [],
-     cities: [],
-     states: [],
-     countries: [],
-     shapes: [],
-     durationMinutes: [],
-     comments: []
-    };
-
-    var keyMap = {
-      datetime: "dates",
-      city: "cities",
-      state: "states",
-      country: "countries",
-      shape: "shapes",
-      durationMinutes: "durationMinutes",
-      comment: "comments"
-    };
-
-    filteredData.forEach((filteredData) => {
-    Object.entries(filteredData).forEach(([key, value]) => {
+    filteredData.forEach((Data) => {
+    Object.entries(Data).forEach(([key, value]) => {
       if (key === "datetime") {
         dates.push(value);
       }
       if (key === "city") {
         cities.push(value);
       }
-      if (key === "State") {
+      if (key === "state") {
           states.push(value);
       }
-      if (key === "Country") {
+      if (key === "country") {
         countries.push(value);
       }
-      if (key === "Shape") {
+      if (key === "shape") {
           shapes.push(value);
       }
       if (key === "durationMinutes") {
-          durationMinutes.push(value);
+          duration.push(value);
       }
+      if (key === "comments") {
+        comments.push(value);
+    }
       else {
-          comment.push(value);
       }
      });
   });
+
+    var tbody = d3.select("tbody");
+    var table = d3.select("table")
+    table.attr("class", "table table-striped");
+    var row = tbody.append("tr");
+
+    
+    row.append("td").text(dates)
+    row.append("td").text(cities)
+    row.append("td").text(states)
+    row.append("td").text(countries)
+    row.append("td").text(shapes)
+    row.append("td").text(duration)
+    row.append("td").text(comments)
 } 
 
 
