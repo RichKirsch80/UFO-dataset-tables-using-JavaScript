@@ -26,66 +26,28 @@ function runEnter() {
     var filteredData = tableData.filter(tableData => tableData.datetime === inputValue);
 
     console.log(filteredData);
-    var dates = [];
-    var cities = [];
-    var states = [];
-    var countries = [];
-    var shapes = [];
-    var duration = [];
-    var comments = [];
-
-    filteredData.forEach((Data) => {
-    Object.entries(Data).forEach(([key, value]) => {
-      if (key === "datetime") {
-        dates.push(value);
-      }
-      if (key === "city") {
-        cities.push(value);
-      }
-      if (key === "state") {
-          states.push(value);
-      }
-      if (key === "country") {
-        countries.push(value);
-      }
-      if (key === "shape") {
-          shapes.push(value);
-      }
-      if (key === "durationMinutes") {
-          duration.push(value);
-      }
-      if (key === "comments") {
-        comments.push(value);
-    }
-      else {
-      }
-     });
-  });
 
     var tbody = d3.select("tbody");
-    var table = d3.select("table")
+    var table = d3.select("#ufo-table")
     table.attr("class", "table table-striped");
-    var row = tbody.append("tr");
-
     
-    row.append("td").text(dates)
-    row.append("td").text(cities)
-    row.append("td").text(states)
-    row.append("td").text(countries)
-    row.append("td").text(shapes)
-    row.append("td").text(duration)
-    row.append("td").text(comments)
+    filteredData.forEach((dataRow) => {
+      // Append a row to the table body
+      var row = tbody.append("tr");
+  
+      // Loop through each field in the dataRow and add
+      // each value as a table cell (td)
+      Object.values(dataRow).forEach((val) => {
+        var cell = row.append("td");
+        cell.text(val);
+      });
+    });
 } 
 
 
 
+
+  
     
     
-
-
-
-
-
-
-
 
