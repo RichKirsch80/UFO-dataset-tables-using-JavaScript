@@ -29,12 +29,13 @@ function runEnter() {
 
     var tbody = d3.select("tbody");
     var table = d3.select("#ufo-table")
+    tbody.html("");
     table.attr("class", "table table-striped");
     
     filteredData.forEach((dataRow) => {
       // Append a row to the table body
       var row = tbody.append("tr");
-  
+      
       // Loop through each field in the dataRow and add
       // each value as a table cell (td)
       Object.values(dataRow).forEach((val) => {
